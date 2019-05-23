@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<div id="add_div">
+    <div class="card add_item_card">
+      <form action="" method="POST" enctype="multipart/form-data">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category}} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <!-- <strong>Title</strong> --> {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <label for="item_name">Title</label>
+      <input type="text" id="item_name" name="title" value="{{item.title if item  else ''}}">
+
+      <label for="item_description">Description</label>
+      <textarea rows="4" cols="50" id="item_description" name="description">{{item.description if item  else ''}}</textarea>
+
+      <div class="form-group">
+          <label for="inputFile">File Input</label>
+          <input type=file name=file>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

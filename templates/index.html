@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card-group" style="padding-left: 51px;">
+  <div class="card" style="text-align: center;">
+    <a href="/get_category">  <i  id="myImg" class="fas fa-plus" style="font-size:60px;color:palevioletred;text-shadow:2px 2px 4px #000000;text-align: center;">
+        <p style="font-size:25px">Add Category</p>
+      </i></a>
+  </div>
+  {% for category in categories %}
+   {% if not current_user.is_authenticated or current_user.id == category.user_id %}
+   <div class="card">
+     <a href="{{url_for('show_category',category_id=category.id)}}">
+        <img onerror="dosomthing(this)" class="myImg card-img-top" src="/static/{{category.file_name}}">
+     </a>
+     <div class="card-body">
+       <p class="card-title">{{category.name}}</p>
+     </div>
+   </div>
+   {% endif %}
+{% endfor %}
+</div>
+{% endblock %}

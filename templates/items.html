@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card-group" style="padding-left: 51px;">
+  <div class="card" style="text-align: center;">
+    <a href="/get_item/{{category_id}}">  <i  id="myImg" class="fas fa-plus" style="font-size:60px;color:palevioletred;text-shadow:2px 2px 4px #000000;text-align: center;">
+        <p style="font-size:25px">Add Item</p>
+      </i></a>
+  </div>
+{% for item in items %}
+  <div class="card">
+    <a href="{{url_for('show_item',item_id = item.id)}}">
+      <img class="myImg card-img-top" src="/static/{{item.file_name}}">
+    </a>
+    <div class="card-body">
+      <p class="card-title">{{item.title}}</p>
+       <p class="card-text">{{item.description}}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
